@@ -20,7 +20,12 @@ const ProductList = (): React.JSX.Element => {
     }
   }, [list, setList]);
 
-  return <>{list.length !== 0 && <ProductCard {...list[0]} />}</>;
+  return (
+    <>
+      {list.length !== 0 &&
+        list.map((prod) => <ProductCard {...prod} key={prod.id} />)}
+    </>
+  );
 };
 
 export default ProductList;

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { IProduct } from "../interfaces/IProduct";
+import { navigateToUrl } from "single-spa";
 
 const ProductCard = ({
   id,
@@ -13,7 +14,7 @@ const ProductCard = ({
   brand,
 }: IProduct): React.JSX.Element => {
   return (
-    <article key={id}>
+    <article>
       <picture>
         <img src={thumbnail} alt={description} />
       </picture>
@@ -21,10 +22,15 @@ const ProductCard = ({
         <h3>{title}</h3>
         <h4>$ {price}</h4>
       </div>
-      <div>
+      <div className="flex">
         <p>category: {category}</p>
         <p>brand: {brand}</p>
-        <p>in stock: {stock}</p>
+      </div>
+      <div>
+        <button type="button" onClick={() => navigateToUrl(`product/${id}`)}>
+          View
+        </button>
+        <button>Add to Cart</button>
       </div>
     </article>
   );
