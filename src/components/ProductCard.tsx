@@ -1,36 +1,57 @@
 import React from "react";
-
-import { IProduct } from "../interfaces/IProduct";
 import { navigateToUrl } from "single-spa";
 
-const ProductCard = ({
-  id,
-  title,
-  description,
-  price,
-  stock,
-  category,
-  thumbnail,
-  brand,
-}: IProduct): React.JSX.Element => {
+// @ts-ignore
+import { addProduct, calculateTotal } from "@hbler/api";
+import { IProduct } from "../interfaces/IProduct";
+
+const ProductCard = (product: IProduct): React.JSX.Element => {
+  // Custom Events - method
+  // const addToCart = (
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ): void => {
+  //   e.preventDefault();
+  //   dispatchEvent(
+  //     new CustomEvent("@hbler/product-listing/product-card/add-to-cart", {
+  //       detail: {
+  //         id: product.id,
+  //         title: product.title,
+  //         price: product.price,
+  //         thumbnail: product.thumbnail,
+  //       },
+  //     })
+  //   );
+  // };
+
   return (
     <article>
       <picture>
-        <img src={thumbnail} alt={description} />
+        <img src={product.thumbnail} alt={product.description} />
       </picture>
       <div>
-        <h3>{title}</h3>
-        <h4>$ {price}</h4>
+        <h3>{product.title}</h3>
+        <h4>$ {product.price}</h4>
       </div>
       <div className="flex">
-        <p>category: {category}</p>
-        <p>brand: {brand}</p>
+        <p>category: {product.category}</p>
+        <p>brand: {product.brand}</p>
       </div>
       <div>
-        <button type="button" onClick={() => navigateToUrl(`product/${id}`)}>
+        <button
+          type="button"
+          onClick={() => navigateToUrl(`product/${product.id}`)}
+        >
           View
         </button>
-        <button>Add to Cart</button>
+        <button
+          type="button"
+          onClick={() => {
+            addProduct(product);
+            calculateTotal();
+          }}
+        >
+          Add to Cart
+        </button>
       </div>
     </article>
   );
