@@ -3,10 +3,9 @@ import ProductList from "./components/ProductList";
 
 const ProductListing = (): React.JSX.Element => {
   return (
-    <main>
-      <h2>Lista de produtos</h2>
+    <section className="flex gap-4 flex-wrap overflow-scroll max-h-[87vh] px-3 py-4 justify-center shadow-inner rounded-sm">
       <ProductList />
-    </main>
+    </section>
   );
 };
 

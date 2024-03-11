@@ -24,22 +24,27 @@ const ProductCard = (product: IProduct): React.JSX.Element => {
   // };
 
   return (
-    <article>
-      <picture>
-        <img src={product.thumbnail} alt={product.description} />
+    <article className="flex flex-col text-body gap-2 overflow-hidden rounded-t-md bg-white max-w-[320px] shadow-lg">
+      <picture className="max-h-[210px] min-h-[210px] max-w-80 overflow-hidden flex justify-center items-center">
+        <img
+          className="w-[100%] h-[100%] object-cover"
+          src={product.thumbnail}
+          alt={product.description}
+        />
       </picture>
-      <div>
-        <h3>{product.title}</h3>
-        <h4>$ {product.price}</h4>
+      <div className="px-2 flex justify-between items-center">
+        <h3 className="text-title text-pretty m-w-[50%]">{product.title}</h3>
+        <h4 className="text-body-light text-nowrap">$ {product.price}</h4>
       </div>
-      <div className="flex">
-        <p>category: {product.category}</p>
-        <p>brand: {product.brand}</p>
+      <div className="px-2">
+        <p className="text-xs">category: {product.category}</p>
+        <p className="text-xs">brand: {product.brand}</p>
       </div>
-      <div>
+      <div className="flex px-2 py-3 justify-between bottom-0">
         <button
           type="button"
           onClick={() => navigateToUrl(`product/${product.id}`)}
+          className="bg-primaryContrast rounded-sm px-2 text-body-bold text-sm text-white"
         >
           View
         </button>
@@ -49,6 +54,7 @@ const ProductCard = (product: IProduct): React.JSX.Element => {
             addProduct(product);
             calculateTotal();
           }}
+          className="bg-secondaryContrast rounded-sm px-2 text-body-bold text-sm text-white"
         >
           Add to Cart
         </button>
