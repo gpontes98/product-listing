@@ -24,7 +24,7 @@ const ProductCard = (product: IProduct): React.JSX.Element => {
   // };
 
   return (
-    <article className="flex flex-col text-body gap-2 overflow-hidden rounded-t-md bg-white max-w-[320px] shadow-lg">
+    <article className="flex flex-col text-body gap-2 overflow-hidden rounded-t-md bg-white max-w-[320px] shadow-lg relative pb-10">
       <picture className="max-h-[210px] min-h-[210px] max-w-80 overflow-hidden flex justify-center items-center">
         <img
           className="w-[100%] h-[100%] object-cover"
@@ -40,11 +40,11 @@ const ProductCard = (product: IProduct): React.JSX.Element => {
         <p className="text-xs">category: {product.category}</p>
         <p className="text-xs">brand: {product.brand}</p>
       </div>
-      <div className="flex px-2 py-3 justify-between bottom-0">
+      <div className="flex w-full justify-between bottom-0 absolute">
         <button
           type="button"
           onClick={() => navigateToUrl(`product/${product.id}`)}
-          className="bg-primaryContrast rounded-sm px-2 text-body-bold text-sm text-white"
+          className="w-[35%] py-1 bg-primaryContrast rounded-sm px-2 text-body-bold text-sm text-white hover:text-body"
         >
           View
         </button>
@@ -54,7 +54,7 @@ const ProductCard = (product: IProduct): React.JSX.Element => {
             addProduct(product);
             calculateTotal();
           }}
-          className="bg-secondaryContrast rounded-sm px-2 text-body-bold text-sm text-white"
+          className="w-[35%] py-1 bg-secondaryContrast rounded-sm px-2 text-body-bold text-sm text-white hover:text-body"
         >
           Add to Cart
         </button>
