@@ -1,31 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IProduct } from "../interfaces/IProduct";
+import { useQuery } from "@tanstack/react-query";
 
 // @ts-ignore
 import { listProducts } from "@hbler/api";
 import ProductCard from "./ProductCard";
 
 const ProductList = (): React.JSX.Element => {
-  const [list, setList] = useState<IProduct[]>([]);
+	const { data, error, isLoading } = useQuery<IProduct[]>({
+		queryKey: ["products"],
+		queryFn: listProducts,
+	});
 
-  useEffect(() => {
-    const fillList = async (): Promise<void> => {
-      const products = await listProducts();
+	if (isLoading) return <div>Loading...</div>;
 
-      setList(products);
-    };
+	if (error) return <div>Error loading products</div>;
 
-    if (list.length === 0) {
-      fillList().catch((e) => console.log(e));
-    }
-  }, [list, setList]);
-
-  return (
-    <>
-      {list.length !== 0 &&
-        list.map((prod) => <ProductCard {...prod} key={prod.id} />)}
-    </>
-  );
+	return (
+		<>
+			{data.length > 0 &&
+				data.map((prod) => <ProductCard {...prod} key={prod.id} />)}
+		</>
+	);
 };
 
 export default ProductList;
