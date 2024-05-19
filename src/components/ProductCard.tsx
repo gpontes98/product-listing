@@ -6,23 +6,6 @@ import { addProduct, calculateTotal } from "@hbler/api";
 import { IProduct } from "../interfaces/IProduct";
 
 const ProductCard = (product: IProduct): React.JSX.Element => {
-  // Custom Events - method
-  // const addToCart = (
-  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  // ): void => {
-  //   e.preventDefault();
-  //   dispatchEvent(
-  //     new CustomEvent("@hbler/product-listing/product-card/add-to-cart", {
-  //       detail: {
-  //         id: product.id,
-  //         title: product.title,
-  //         price: product.price,
-  //         thumbnail: product.thumbnail,
-  //       },
-  //     })
-  //   );
-  // };
-
   return (
     <article className="flex flex-col text-body gap-2 overflow-hidden rounded-t-md bg-white max-w-[320px] shadow-lg relative pb-10">
       <picture className="max-h-[210px] min-h-[210px] max-w-80 overflow-hidden flex justify-center items-center">
